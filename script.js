@@ -1,3 +1,5 @@
+"use strict";
+
 // Size of field/table with cells
 const width_x = 40,
   height_y = 20;
@@ -70,7 +72,8 @@ function upd() {
     Any live cell with two or three live neighbors lives on to the next generation.
     Any dead cell with exactly three live neighbors becomes a live cell.
     */
-  let updated = {};
+  // let updated = {};
+  let updated = new Map();
 
   for (let y = 1; y <= height_y; y++) {
     for (let x = 1; x <= width_x; x++) {
@@ -79,13 +82,18 @@ function upd() {
       let lv_me = document.getElementById(my_id).classList.contains("lv");
 
       // cell is alive only in two cases, dead in all others
-      updated[my_id] = "";
+      // updated[my_id] = "";
+
       if (lv_me && lv_ns >= 2 && lv_ns <= 3) {
-        updated[my_id] = "lv";
+        // updated[my_id] = "lv";
+        updated.set(my_id, "lv");
+      } else {
+        updated.set(my_id, "");
       }
 
       // a dead cell will be switched alive if it has exactly 3 living neighbors
-      if (!lv_me && lv_ns == 3) updated[my_id] = "lv";
+      // if (!lv_me && lv_ns == 3) updated[my_id] = "lv";
+      if (!lv_me && lv_ns == 3) updated.set(my_id, "lv");
     }
   }
 
@@ -97,10 +105,14 @@ function upd() {
   //   document.getElementById(k_id).classList = val;
   // }
 
-  // Loop over all entries and update the playing field/table;
-  Object.entries(updated).forEach(([key, val]) => {
+  // Loop over all entries and update the playing field/table (ES 2017);
+  // Object.entries(updated).forEach(([key, val]) => {
+  //   document.getElementById(key).classList = val;
+  // });
+
+  for (const [key, val] of updated.entries()) {
     document.getElementById(key).classList = val;
-  });
+  }
 
   // helper-function that determines the number of living neighbors
   function live_neighbors(id) {
