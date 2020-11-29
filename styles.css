@@ -1,0 +1,28 @@
+table {
+  border-collapse: collapse;
+  box-sizing: border-box;
+}
+td {
+  border: 1px solid grey;
+  font-size: 9px;
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  overflow: hidden;
+  color: #bbb;
+  user-select: none;
+}
+.lv {
+  background-color: #080;
+  border-radius: 2px 4px;
+}
+.rng {
+  border-radius: 30%;
+  background-color: #0a0;
+}
+.rng_u {
+  background-color: #efe;
+}
+.exp {
+  background-color: #ccc;
+}
