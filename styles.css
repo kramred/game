@@ -1,7 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 table {
   border-collapse: collapse;
   box-sizing: border-box;
 }
+
 td {
   border: 1px solid grey;
   font-size: 9px;
@@ -12,17 +19,60 @@ td {
   color: #bbb;
   user-select: none;
 }
+
 .lv {
   background-color: #080;
   border-radius: 2px 4px;
 }
+
 .rng {
   border-radius: 30%;
   background-color: #8e8;
 }
+
 .rng_u {
   background-color: #efe;
 }
+
 .exp {
   background-color: #ccc;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: #080;
+}
+
+a:hover,
+a:focus {
+  color: #efe;
+  background-color: #080;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 0.3em 0.5em;
+  margin: 0.2em;
+  color: #efe;
+  background-color: #080;
+  border: 1px solid #040;
+  border-radius: 6px 1px;
+}
+
+button:hover,
+button:focus {
+  color: #040;
+  background-color: #efe;
+  border: 1px solid #080;
+}
+
+#rng {
+  font-size: 16px;
+}
+
+#rng_label {
+  font-size: 1.1em;
+  padding: 0.3em;
+  margin-top: .5em;
 }
