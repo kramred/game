@@ -57,7 +57,7 @@ button {
   color: #efe;
   background-color: #080;
   border: 1px solid #040;
-  border-radius: 6px 1px;
+  border-radius: .1em .6em;
 }
 
 button:hover,
@@ -72,7 +72,7 @@ button:focus {
 }
 
 #rng_label {
-  font-size: 1.1em;
+  font-size: 16px;
   padding: 0.3em;
   margin-top: .5em;
 }
