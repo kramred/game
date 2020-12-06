@@ -17,6 +17,8 @@ function main(a_1) {
   // register event listeners
   reg_evs();
 
+  if (window.innerWidth < 1440) resize_cells();
+
   let running = null;
   if (a_1 == "1") auto1("url");
 
@@ -44,6 +46,8 @@ function main(a_1) {
 
     // clicking the button `?auto=1` will change URL and go to full window display
     document.getElementById("auto1").addEventListener("click", auto1);
+
+    window.addEventListener("resize", resize_cells);
   }
 
   function auto1(source) {
@@ -54,13 +58,20 @@ function main(a_1) {
     for (let el of document.querySelector("body").children) {
       el.style.display = el.id != "grid" ? "none" : "flex";
     }
+    resize_cells();
+    if (source == "url" || running == null) {
+      running = setInterval(upd, 250);
+    }
+  }
+
+  function resize_cells() {
     let a1 = Math.floor(
-      Math.min(
-        (window.innerWidth - 20) / 42,
-        (window.innerHeight - 85) / 23
-      )
+      Math.min((window.innerWidth - 20) / 42, (window.innerHeight - 85) / 23)
     );
-    // console.log(window.innerWidth, window.innerHeight, a1);
+
+    if (document.getElementById("style_auto1"))
+      document.getElementById("style_auto1").remove();
+
     const style_auto1 = document.createElement("style");
     style_auto1.id = "style_auto1";
     style_auto1.innerHTML = `
@@ -69,10 +80,6 @@ function main(a_1) {
       height: ${a1}px;
     }`;
     document.head.append(style_auto1);
-    if (source == "url" || running == null) {
-      running = setInterval(upd, 250);
-      window.addEventListener("resize", auto1);
-    }
   }
 
   // build the playing field/table
