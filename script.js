@@ -7,12 +7,13 @@ function main(a_1) {
   // Size of field/table with cells
   let width_x = 42,
     height_y = 23;
+  let round = 0;
 
   // create the table dynamically
   build_table();
 
   // poulate random cells with life
-  rnd_state();
+  rnd_state(0.23, true);
 
   // register event listeners
   reg_evs();
@@ -96,19 +97,25 @@ function main(a_1) {
     document.getElementById("grid").innerHTML = tbl;
   }
 
-  // change the state of one cell
-  function toggle(el) {
-    if (!String(el).match("HTML")) el = this;
-    el.className = el.classList.contains("lv") ? "exp" : "lv rng";
+  // change the state of one cell at a time
+  function toggle(el, init) {
+    // el is the element, except for the click event, where el is that event and "this" is the element
+    if (el.type == "click") {
+      this.className = this.classList.contains("lv") ? "" : "lv";
+    }
+    else if (init) el.className = el.classList.contains("lv") ? "" : "lv";
+    else {
+      el.className = el.classList.contains("lv") ? "exp" : "lv rng";
+    }
   }
 
   // toggle the state of random cells in the table
-  function rnd_state(prob = 0.23) {
+  function rnd_state(prob, init = false) {
     for (let y = 1; y <= height_y; y++) {
       for (let x = 1; x <= width_x; x++) {
         if (Math.random() < prob) {
           // document.getElementById(`x${x}y${y}`).className = "lv rng";
-          toggle(document.getElementById(`x${x}y${y}`));
+          toggle(document.getElementById(`x${x}y${y}`), init);
         }
       }
     }
@@ -123,6 +130,9 @@ function main(a_1) {
     Any dead cell with exactly three live neighbors becomes a live cell.
     */
     // let updated = {};
+    
+    document.getElementById("grid").style.filter = `hue-rotate(${round++%360}deg)`;
+
     let updated = new Map();
 
     for (let y = 1; y <= height_y; y++) {

@@ -21,7 +21,7 @@ td {
   width: 30px;
   height: 30px;
   overflow: hidden;
-  color: #bbb;
+  color: #d7d7d7;
   user-select: none;
 }
 
@@ -33,6 +33,7 @@ td {
 .rng {
   border-radius: 30%;
   background-color: #8e8;
+  opacity: .1;
 }
 
 .rng_u {
@@ -41,6 +42,7 @@ td {
 
 .exp {
   background-color: #ccc;
+  opacity: .1;
 }
 
 a:link,
