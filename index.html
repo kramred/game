@@ -13,13 +13,20 @@
   <h1 class="text-center">
     <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life">
       Conway's Game of Life</a> with random events</h1>
-  <div id="grid"></div>
-  <label id="rng_label">
-    <span>Random events in %:
-      <input type="number" id="rng" name="rng" min=0 max=100 value=11>
-  </label>
-  <button id="next">Next generation</button>
-  <button id="run">Auto run</button>
+  <div id="grid">
+    This area will be populated by the script, w/o JavaScript there is not much happening here...
+  </div>
+
+  <div id="config">
+    <label id="rng_label">
+      <span>Random events in %:
+        <input type="number" id="rng" name="rng" min=0 max=100 value=11>
+    </label>
+    <button id="clear">Clear</button>
+    <button id="next">Next generation</button>
+    <button id="run">Auto run</button>
+  </div>
+
   <br>
   <p>
     Auto-run showing only the cells, using the full window space: add 

@@ -30,6 +30,9 @@ function main(a_1) {
       cell.addEventListener("click", toggle);
     }
 
+    // clicking the button #clear will set all cells empty
+    document.getElementById("clear").addEventListener("click", clr);
+
     // clicking the button #next will advance one generation
     document.getElementById("next").addEventListener("click", upd);
 
@@ -67,7 +70,7 @@ function main(a_1) {
 
   function resize_cells() {
     let a1 = Math.floor(
-      Math.min((window.innerWidth - 20) / 42, (window.innerHeight - 85) / 23)
+      Math.min((window.innerWidth - 22) / 42, (window.innerHeight - 85) / 23)
     );
 
     if (document.getElementById("style_auto1"))
@@ -102,10 +105,18 @@ function main(a_1) {
     // el is the element, except for the click event, where el is that event and "this" is the element
     if (el.type == "click") {
       this.className = this.classList.contains("lv") ? "" : "lv";
-    }
-    else if (init) el.className = el.classList.contains("lv") ? "" : "lv";
+    } else if (init) el.className = el.classList.contains("lv") ? "" : "lv";
     else {
       el.className = el.classList.contains("lv") ? "exp" : "lv rng";
+    }
+  }
+
+  // clear all cells in the table
+  function clr() {
+    for (let y = 1; y <= height_y; y++) {
+      for (let x = 1; x <= width_x; x++) {
+        document.getElementById(`x${x}y${y}`).className = "";
+      }
     }
   }
 
@@ -130,8 +141,10 @@ function main(a_1) {
     Any dead cell with exactly three live neighbors becomes a live cell.
     */
     // let updated = {};
-    
-    document.getElementById("grid").style.filter = `hue-rotate(${round++%360}deg)`;
+
+    document.getElementById("grid").style.filter = `hue-rotate(${
+      round++ % 360
+    }deg)`;
 
     let updated = new Map();
 

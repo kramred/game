@@ -9,6 +9,10 @@ body {
   margin: auto;
 }
 
+#config {
+  padding-top: 2em;
+}
+
 table {
   border-collapse: collapse;
   box-sizing: border-box;
@@ -67,8 +71,7 @@ button {
   border-radius: 0.1em 0.6em;
 }
 
-button:hover,
-button:focus {
+button:hover {
   color: #040;
   background-color: #efe;
   border: 1px solid #080;
